@@ -8,5 +8,6 @@ one_astronaut_LDADD = $(allegro_LIBS)
 
 # Core
 one_astronaut_SOURCES = \
-	main.c
+	main.c \
+	one_astronaut.c one_astronaut.h
 

@@ -1,4 +1,4 @@
-/* One Astronaut: main.c
+/* One Astronaut: one_astronaut.h
  *
  * Copyright (c) 2011 Michael Forney <mforney@mforney.org>
  *
@@ -17,14 +17,29 @@
  * One Astronaut.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "one_astronaut.h"
+#ifndef ONE_ASTRONAUT_H
+#define ONE_ASTRONAUT_H
 
-int main(int argc, char * argv[])
-{
-    setup();
-    run();
-    cleanup();
-}
+#include <allegro5/allegro.h>
+
+extern ALLEGRO_DISPLAY * display;
+
+/**
+ * Perform all necessary initialization to run One Astronaut.
+ */
+void setup();
+
+/**
+ * Perform all necessary cleanup prior to exting One Astronaut.
+ */
+void cleanup();
+
+/**
+ * Run One Astronaut, entering the game loop.
+ */
+void run();
+
+#endif
 
 // vim: fdm=syntax fo=croql et sw=4 sts=4 ts=8
 

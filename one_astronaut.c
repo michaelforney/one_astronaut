@@ -1,4 +1,4 @@
-/* One Astronaut: main.c
+/* One Astronaut: one_astronaut.c
  *
  * Copyright (c) 2011 Michael Forney <mforney@mforney.org>
  *
@@ -19,11 +19,36 @@
 
 #include "one_astronaut.h"
 
-int main(int argc, char * argv[])
+ALLEGRO_DISPLAY * display;
+ALLEGRO_EVENT_QUEUE * event_queue;
+
+bool running = true;
+
+void setup()
 {
-    setup();
-    run();
-    cleanup();
+    al_set_app_name("one_astronaut");
+    al_set_org_name("one_astronaut");
+
+    al_init();
+
+    event_queue = al_create_event_queue();
+    display = al_create_display(800, 600);
+}
+
+void cleanup()
+{
+    al_destroy_display(display);
+    al_destroy_event_queue(event_queue);
+}
+
+void run()
+{
+    ALLEGRO_EVENT event;
+
+    while (running)
+    {
+        allegro_wait_for_event(event_queue, &event);
+    }
 }
 
 // vim: fdm=syntax fo=croql et sw=4 sts=4 ts=8
