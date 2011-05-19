@@ -6,8 +6,10 @@
 #  ALLEGRO_DEFINITIONS - Compiler switches required for using Allegro
 
 if(WIN32)
-    set(ALLEGRO_INCLUDE_HINTS "${ALLEGRO_PATH}/include")
-    set(ALLEGRO_LIBRARY_HINTS "${ALLEGRO_PATH}/bin")
+    set(ALLEGRO_INCLUDE_HINTS
+        ${CMAKE_BINARY_DIR}/${ALLEGRO_PATH}/include ${ALLEGRO_PATH}/include)
+    set(ALLEGRO_LIBRARY_HINTS
+        ${CMAKE_BINARY_DIR}/${ALLEGRO_PATH}/bin ${ALLEGRO_PATH}/bin)
 else(WIN32)
     find_package(PkgConfig)
     pkg_check_modules(PC_ALLEGRO QUIET allegro-5.0)
@@ -22,7 +24,8 @@ endif(WIN32)
 find_path(ALLEGRO_INCLUDE_DIR allegro5/allegro.h
     HINTS ${ALLEGRO_INCLUDE_HINTS})
 
-find_library(ALLEGRO_LIBRARY NAMES allegro liballegro
+find_library(ALLEGRO_LIBRARY
+    NAMES allegro liballegro allegro-5.0.2-mt
     HINTS ${ALLEGRO_LIBRARY_HINTS})
 
 set(ALLEGRO_LIBRARIES ${ALLEGRO_LIBRARY})
