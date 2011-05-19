@@ -21,8 +21,10 @@
 
 ALLEGRO_DISPLAY * display;
 ALLEGRO_EVENT_QUEUE * event_queue;
+ALLEGRO_TIMER * fps_timer;
 
 bool running = true;
+int target_fps = 60;
 
 void setup()
 {
@@ -33,12 +35,15 @@ void setup()
 
     event_queue = al_create_event_queue();
     display = al_create_display(800, 600);
+    fps_timer = al_create_timer(ALLEGRO_BPS_TO_SECS(target_fps));
 
     al_register_event_source(event_queue, al_get_display_event_source(display));
+    al_register_event_source(event_queue, al_get_timer_event_source(fps_timer));
 }
 
 void cleanup()
 {
+    al_destroy_timer(fps_timer);
     al_destroy_display(display);
     al_destroy_event_queue(event_queue);
 }
@@ -47,18 +52,15 @@ void run()
 {
     ALLEGRO_EVENT event;
 
+    al_start_timer(fps_timer);
+
     while (running)
     {
         al_wait_for_event(event_queue, &event);
-
-        switch (event.type)
-        {
-            case ALLEGRO_EVENT_DISPLAY_CLOSE:
-                /* TODO: Maybe ask the user to save the game? */
-                running = false;
-                break;
-        }
+        handle_event(&event);
     }
+
+    al_stop_timer(fps_timer);
 }
 
 // vim: fdm=syntax fo=croql et sw=4 sts=4 ts=8

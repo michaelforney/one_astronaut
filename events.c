@@ -1,4 +1,4 @@
-/* One Astronaut: one_astronaut.h
+/* One Astronaut: events.c
  *
  * Copyright (c) 2011 Michael Forney <mforney@mforney.org>
  *
@@ -17,31 +17,38 @@
  * One Astronaut.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ONE_ASTRONAUT_ONE_ASTRONAUT_H
-#define ONE_ASTRONAUT_ONE_ASTRONAUT_H
+#include "events.h"
+#include "one_astronaut.h"
+#include "draw.h"
 
-#include <allegro5/allegro.h>
+typedef void (* event_handler_t)(ALLEGRO_EVENT * event);
 
-extern ALLEGRO_TIMER * fps_timer;
-extern ALLEGRO_EVENT_QUEUE * event_queue;
-extern bool running;
+void handle_display_close(ALLEGRO_EVENT * event)
+{
+    running = false;
+}
 
-/**
- * Perform all necessary initialization to run One Astronaut.
- */
-void setup();
+void handle_timer(ALLEGRO_EVENT * event)
+{
+    if (event->timer.source == fps_timer
+        && al_is_event_queue_empty(event_queue))
+    {
+        draw();
+        /* TODO: Update fps in top right corner. */
+        al_flip_display();
+    }
+}
 
-/**
- * Perform all necessary cleanup prior to exting One Astronaut.
- */
-void cleanup();
-
-/**
- * Run One Astronaut, entering the game loop.
- */
-void run();
-
-#endif
+void handle_event(ALLEGRO_EVENT * event)
+{
+    switch (event->type)
+    {
+        case ALLEGRO_EVENT_DISPLAY_CLOSE:
+            handle_display_close(event); break;
+        case ALLEGRO_EVENT_TIMER:
+            handle_timer(event); break;
+    }
+}
 
 // vim: fdm=syntax fo=croql et sw=4 sts=4 ts=8
 

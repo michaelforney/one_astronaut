@@ -18,6 +18,8 @@ include_directories(${ALLEGRO_INCLUDE_DIR})
 add_executable(one_astronaut
     main.c
     one_astronaut.c
+    events.c
+    draw.c
 )
 
 target_link_libraries(one_astronaut

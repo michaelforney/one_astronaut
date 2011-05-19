@@ -1,4 +1,4 @@
-/* One Astronaut: one_astronaut.h
+/* One Astronaut: events.h
  *
  * Copyright (c) 2011 Michael Forney <mforney@mforney.org>
  *
@@ -17,29 +17,15 @@
  * One Astronaut.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ONE_ASTRONAUT_ONE_ASTRONAUT_H
-#define ONE_ASTRONAUT_ONE_ASTRONAUT_H
+#ifndef ONE_ASTRONAUT_EVENTS_H
+#define ONE_ASTRONAUT_EVENTS_H
 
 #include <allegro5/allegro.h>
 
-extern ALLEGRO_TIMER * fps_timer;
-extern ALLEGRO_EVENT_QUEUE * event_queue;
-extern bool running;
-
 /**
- * Perform all necessary initialization to run One Astronaut.
+ * Handle the given event, calling the appropriate event handler.
  */
-void setup();
-
-/**
- * Perform all necessary cleanup prior to exting One Astronaut.
- */
-void cleanup();
-
-/**
- * Run One Astronaut, entering the game loop.
- */
-void run();
+void handle_event(ALLEGRO_EVENT * event);
 
 #endif
 

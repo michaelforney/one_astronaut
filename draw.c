@@ -1,4 +1,4 @@
-/* One Astronaut: one_astronaut.h
+/* One Astronaut: draw.c
  *
  * Copyright (c) 2011 Michael Forney <mforney@mforney.org>
  *
@@ -17,31 +17,15 @@
  * One Astronaut.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ONE_ASTRONAUT_ONE_ASTRONAUT_H
-#define ONE_ASTRONAUT_ONE_ASTRONAUT_H
-
+#include <stdio.h>
 #include <allegro5/allegro.h>
 
-extern ALLEGRO_TIMER * fps_timer;
-extern ALLEGRO_EVENT_QUEUE * event_queue;
-extern bool running;
+#include "draw.h"
 
-/**
- * Perform all necessary initialization to run One Astronaut.
- */
-void setup();
-
-/**
- * Perform all necessary cleanup prior to exting One Astronaut.
- */
-void cleanup();
-
-/**
- * Run One Astronaut, entering the game loop.
- */
-void run();
-
-#endif
+void draw()
+{
+    al_clear_to_color(al_map_rgb(0, 0, 0));
+}
 
 // vim: fdm=syntax fo=croql et sw=4 sts=4 ts=8
 
