@@ -47,7 +47,7 @@ void run()
 
     while (running)
     {
-        allegro_wait_for_event(event_queue, &event);
+        al_wait_for_event(event_queue, &event);
     }
 }
 
