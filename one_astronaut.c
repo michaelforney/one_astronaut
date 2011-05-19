@@ -33,6 +33,8 @@ void setup()
 
     event_queue = al_create_event_queue();
     display = al_create_display(800, 600);
+
+    al_register_event_source(event_queue, al_get_display_event_source(display));
 }
 
 void cleanup()
@@ -48,6 +50,14 @@ void run()
     while (running)
     {
         al_wait_for_event(event_queue, &event);
+
+        switch (event.type)
+        {
+            case ALLEGRO_EVENT_DISPLAY_CLOSE:
+                /* TODO: Maybe ask the user to save the game? */
+                running = false;
+                break;
+        }
     }
 }
 
