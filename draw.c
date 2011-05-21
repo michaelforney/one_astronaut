@@ -24,16 +24,25 @@
 #include "draw.h"
 #include "one_astronaut.h"
 
-void draw()
+static void draw_fps()
 {
     char fps_string[64];
-
-    al_clear_to_color(al_map_rgb(0, 0, 0));
 
     sprintf(fps_string, "%.2f fps", fps);
     al_draw_text(main_font, al_map_rgb(0xff, 0xff, 0xff),
         al_get_display_width(display), 0,
         ALLEGRO_ALIGN_RIGHT, fps_string);
+}
+
+static void draw_background()
+{
+    al_clear_to_color(al_map_rgb(0, 0, 0));
+}
+
+void draw()
+{
+    draw_background();
+    draw_fps();
 
     al_flip_display();
 }
