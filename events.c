@@ -19,6 +19,7 @@
 
 #include "events.h"
 #include "one_astronaut.h"
+#include "update.h"
 #include "draw.h"
 
 ALLEGRO_EVENT_QUEUE * event_queue;
@@ -33,6 +34,7 @@ static void handle_timer(ALLEGRO_EVENT * event)
     if (event->timer.source == fps_timer
         && al_is_event_queue_empty(event_queue))
     {
+        update();
         draw();
     }
 }

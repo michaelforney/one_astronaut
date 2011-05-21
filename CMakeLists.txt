@@ -15,6 +15,7 @@ add_executable(one_astronaut
     main.c
     one_astronaut.c
     events.c
+    update.c
     draw.c
 )
 

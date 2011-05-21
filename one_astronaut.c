@@ -19,12 +19,13 @@
 
 #include "one_astronaut.h"
 #include "events.h"
+#include "player.h"
 
 ALLEGRO_DISPLAY * display;
 ALLEGRO_TIMER * fps_timer;
 ALLEGRO_FONT * main_font;
 bool running = true;
-double fps = 0;
+double fps = 0.0;
 KEYS keys = {false, false, false, false, false};
 
 static int target_fps = 60;
@@ -62,19 +63,12 @@ void cleanup()
 void run()
 {
     ALLEGRO_EVENT event;
-    double time;
 
-    time = al_get_time();
     al_start_timer(fps_timer);
 
     while (running)
     {
         al_wait_for_event(event_queue, &event);
-
-        double new_time = al_get_time();
-        fps = 1.0 / (new_time - time);
-        time = new_time;
-
         handle_event(&event);
     }
 
