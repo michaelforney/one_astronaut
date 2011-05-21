@@ -23,12 +23,12 @@
 
 ALLEGRO_EVENT_QUEUE * event_queue;
 
-void handle_display_close(ALLEGRO_EVENT * event)
+static void handle_display_close(ALLEGRO_EVENT * event)
 {
     running = false;
 }
 
-void handle_timer(ALLEGRO_EVENT * event)
+static void handle_timer(ALLEGRO_EVENT * event)
 {
     if (event->timer.source == fps_timer
         && al_is_event_queue_empty(event_queue))
@@ -37,7 +37,7 @@ void handle_timer(ALLEGRO_EVENT * event)
     }
 }
 
-void handle_key_down(ALLEGRO_EVENT * event)
+static void handle_key_down(ALLEGRO_EVENT * event)
 {
     switch (event->keyboard.keycode)
     {
@@ -54,7 +54,7 @@ void handle_key_down(ALLEGRO_EVENT * event)
     }
 }
 
-void handle_key_up(ALLEGRO_EVENT * event)
+static void handle_key_up(ALLEGRO_EVENT * event)
 {
     switch (event->keyboard.keycode)
     {
