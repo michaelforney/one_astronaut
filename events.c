@@ -21,8 +21,6 @@
 #include "one_astronaut.h"
 #include "draw.h"
 
-typedef void (* event_handler_t)(ALLEGRO_EVENT * event);
-
 void handle_display_close(ALLEGRO_EVENT * event)
 {
     running = false;
