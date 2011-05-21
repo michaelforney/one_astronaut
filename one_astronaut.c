@@ -21,7 +21,6 @@
 #include "events.h"
 
 ALLEGRO_DISPLAY * display;
-ALLEGRO_EVENT_QUEUE * event_queue;
 ALLEGRO_TIMER * fps_timer;
 ALLEGRO_FONT * main_font;
 bool running = true;
@@ -43,14 +42,13 @@ void setup()
 
     main_font = al_load_font("data/fonts/TerminusBold-4.34.ttf", 24, 0);
 
-    event_queue = al_create_event_queue();
     display = al_create_display(800, 600);
     fps_timer = al_create_timer(ALLEGRO_BPS_TO_SECS(target_fps));
 
-    al_register_event_source(event_queue, al_get_display_event_source(display));
+    setup_events();
+
     al_register_event_source(event_queue, al_get_timer_event_source(fps_timer));
     al_register_event_source(event_queue, al_get_keyboard_event_source());
-    
 }
 
 void cleanup()
@@ -58,7 +56,7 @@ void cleanup()
     al_destroy_timer(fps_timer);
     al_destroy_display(display);
     al_uninstall_keyboard();
-    al_destroy_event_queue(event_queue);
+    cleanup_events();
 }
 
 void run()

@@ -21,6 +21,8 @@
 #include "one_astronaut.h"
 #include "draw.h"
 
+ALLEGRO_EVENT_QUEUE * event_queue;
+
 void handle_display_close(ALLEGRO_EVENT * event)
 {
     running = false;
@@ -67,6 +69,17 @@ void handle_key_up(ALLEGRO_EVENT * event)
         case ALLEGRO_KEY_SPACE:
             keys.space = false; break;
     }
+}
+
+void setup_events()
+{
+    event_queue = al_create_event_queue();
+    al_register_event_source(event_queue, al_get_display_event_source(display));
+}
+
+void cleanup_events()
+{
+    al_destroy_event_queue(event_queue);
 }
 
 void handle_event(ALLEGRO_EVENT * event)

@@ -26,7 +26,6 @@
 #include <allegro5/allegro_ttf.h>
 
 extern ALLEGRO_DISPLAY * display;
-extern ALLEGRO_EVENT_QUEUE * event_queue;
 extern ALLEGRO_TIMER * fps_timer;
 extern ALLEGRO_FONT * main_font;
 extern bool running;

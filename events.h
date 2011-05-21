@@ -22,6 +22,18 @@
 
 #include <allegro5/allegro.h>
 
+extern ALLEGRO_EVENT_QUEUE * event_queue;
+
+/**
+ * Setup the event queue and anything else necessary for processing events.
+ */
+void setup_events();
+
+/**
+ * Perform all necessary cleanup related to processing events.
+ */
+void cleanup_events();
+
 /**
  * Handle the given event, calling the appropriate event handler.
  */
