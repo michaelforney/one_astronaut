@@ -37,6 +37,40 @@ void handle_timer(ALLEGRO_EVENT * event)
     }
 }
 
+void handle_key_down(ALLEGRO_EVENT * event)
+{
+    switch (event->keyboard.keycode)
+    {
+        case ALLEGRO_KEY_A:
+            keys.a = true; break;
+        case ALLEGRO_KEY_D:
+            keys.d = true; break;
+        case ALLEGRO_KEY_S:
+            keys.s = true; break;
+        case ALLEGRO_KEY_W:
+            keys.w = true; break;
+        case ALLEGRO_KEY_SPACE:
+            keys.space = true; break;
+    }
+}
+
+void handle_key_up(ALLEGRO_EVENT * event)
+{
+    switch (event->keyboard.keycode)
+    {
+        case ALLEGRO_KEY_A:
+            keys.a = false; break;
+        case ALLEGRO_KEY_D:
+            keys.d = false; break;
+        case ALLEGRO_KEY_S:
+            keys.s = false; break;
+        case ALLEGRO_KEY_W:
+            keys.w = false; break;
+        case ALLEGRO_KEY_SPACE:
+            keys.space = false; break;
+    }
+}
+
 void handle_event(ALLEGRO_EVENT * event)
 {
     switch (event->type)
@@ -45,6 +79,10 @@ void handle_event(ALLEGRO_EVENT * event)
             handle_display_close(event); break;
         case ALLEGRO_EVENT_TIMER:
             handle_timer(event); break;
+        case ALLEGRO_KEY_DOWN:
+            handle_key_down(event); break;
+        case ALLEGRO_KEY_UP:
+            handle_key_up(event); break;
     }
 }
 

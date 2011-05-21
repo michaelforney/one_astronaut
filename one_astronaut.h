@@ -31,6 +31,11 @@ extern ALLEGRO_TIMER * fps_timer;
 extern ALLEGRO_FONT * main_font;
 extern bool running;
 extern double fps;
+typedef struct {
+    bool a,d,s,w;
+    bool space;
+} KEYS;
+extern KEYS keys;
 
 /**
  * Perform all necessary initialization to run One Astronaut.
