@@ -34,8 +34,6 @@ void handle_timer(ALLEGRO_EVENT * event)
         && al_is_event_queue_empty(event_queue))
     {
         draw();
-        /* TODO: Update fps in top right corner. */
-        al_flip_display();
     }
 }
 

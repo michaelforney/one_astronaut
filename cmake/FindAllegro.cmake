@@ -25,17 +25,40 @@ find_path(ALLEGRO_INCLUDE_DIR allegro5/allegro.h
     HINTS ${ALLEGRO_INCLUDE_HINTS})
 
 find_library(ALLEGRO_LIBRARY
-    NAMES allegro liballegro allegro-5.0.2-mt
+    NAMES allegro allegro-5.0.2-mt
     HINTS ${ALLEGRO_LIBRARY_HINTS})
 
-set(ALLEGRO_LIBRARIES ${ALLEGRO_LIBRARY})
+find_library(ALLEGRO_FONT_LIBRARY
+    NAMES allegro_font allegro_font-5.0.2-mt
+    HINTS ${ALLEGRO_LIBRARY_HINTS})
+
+find_library(ALLEGRO_IMAGE_LIBRARY
+    NAMES allegro_image allegro_image-5.0.2-mt
+    HINTS ${ALLEGRO_LIBRARY_HINTS})
+
+find_library(ALLEGRO_TTF_LIBRARY
+    NAMES allegro_ttf allegro_ttf-5.0.2-mt
+    HINTS ${ALLEGRO_LIBRARY_HINTS})
+
+set(ALLEGRO_LIBRARIES
+        ${ALLEGRO_LIBRARY}
+        ${ALLEGRO_FONT_LIBRARY}
+        ${ALLEGRO_IMAGE_LIBRARY}
+        ${ALLEGRO_TTF_LIBRARY}
+)
 set(ALLEGRO_INCLUDE_DIRS ${ALLEGRO_INCLUDE_DIR})
 
 include(FindPackageHandleStandardArgs)
 # handle the QUIETLY and REQUIRED arguments and set ALLEGRO_FOUND to TRUE
 # if all listed variables are TRUE
 find_package_handle_standard_args(Allegro DEFAULT_MSG
-    ALLEGRO_LIBRARY ALLEGRO_INCLUDE_DIR)
+    ALLEGRO_LIBRARY
+    ALLEGRO_FONT_LIBRARY
+    ALLEGRO_IMAGE_LIBRARY
+    ALLEGRO_TTF_LIBRARY
+    ALLEGRO_INCLUDE_DIR
+)
 
-mark_as_advanced(ALLEGRO_INCLUDE_DIR ALLEGRO_LIBRARY)
+mark_as_advanced(ALLEGRO_INCLUDE_DIR ALLEGRO_LIBRARY ALLEGRO_FONT_LIBRARY
+    ALLEGRO_IMAGE_LIBRARY ALLEGRO_TTF_LIBRARY)
 

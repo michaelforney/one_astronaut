@@ -21,10 +21,16 @@
 #define ONE_ASTRONAUT_ONE_ASTRONAUT_H
 
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_image.h>
+#include <allegro5/allegro_ttf.h>
 
-extern ALLEGRO_TIMER * fps_timer;
+extern ALLEGRO_DISPLAY * display;
 extern ALLEGRO_EVENT_QUEUE * event_queue;
+extern ALLEGRO_TIMER * fps_timer;
+extern ALLEGRO_FONT * main_font;
 extern bool running;
+extern double fps;
 
 /**
  * Perform all necessary initialization to run One Astronaut.

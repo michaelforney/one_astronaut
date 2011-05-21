@@ -18,13 +18,16 @@
  */
 
 #include "one_astronaut.h"
+#include "events.h"
 
 ALLEGRO_DISPLAY * display;
 ALLEGRO_EVENT_QUEUE * event_queue;
 ALLEGRO_TIMER * fps_timer;
-
+ALLEGRO_FONT * main_font;
 bool running = true;
-int target_fps = 60;
+double fps = 0;
+
+static int target_fps = 60;
 
 void setup()
 {
@@ -32,6 +35,11 @@ void setup()
     al_set_org_name("one_astronaut");
 
     al_init();
+    al_init_font_addon();
+    al_init_image_addon();
+    al_init_ttf_addon();
+
+    main_font = al_load_font("data/fonts/TerminusBold-4.34.ttf", 24, 0);
 
     event_queue = al_create_event_queue();
     display = al_create_display(800, 600);
@@ -51,12 +59,19 @@ void cleanup()
 void run()
 {
     ALLEGRO_EVENT event;
+    double time;
 
+    time = al_get_time();
     al_start_timer(fps_timer);
 
     while (running)
     {
         al_wait_for_event(event_queue, &event);
+
+        double new_time = al_get_time();
+        fps = 1.0 / (new_time - time);
+        time = new_time;
+
         handle_event(&event);
     }
 

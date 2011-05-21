@@ -19,12 +19,23 @@
 
 #include <stdio.h>
 #include <allegro5/allegro.h>
+#include <allegro5/allegro_font.h>
 
 #include "draw.h"
+#include "one_astronaut.h"
 
 void draw()
 {
+    char fps_string[64];
+
     al_clear_to_color(al_map_rgb(0, 0, 0));
+
+    sprintf(fps_string, "%.2f fps", fps);
+    al_draw_text(main_font, al_map_rgb(0xff, 0xff, 0xff),
+        al_get_display_width(display), 0,
+        ALLEGRO_ALIGN_RIGHT, fps_string);
+
+    al_flip_display();
 }
 
 // vim: fdm=syntax fo=croql et sw=4 sts=4 ts=8
