@@ -92,9 +92,9 @@ void handle_event(ALLEGRO_EVENT * event)
             handle_display_close(event); break;
         case ALLEGRO_EVENT_TIMER:
             handle_timer(event); break;
-        case ALLEGRO_KEY_DOWN:
+        case ALLEGRO_EVENT_KEY_DOWN:
             handle_key_down(event); break;
-        case ALLEGRO_KEY_UP:
+        case ALLEGRO_EVENT_KEY_UP:
             handle_key_up(event); break;
     }
 }
