@@ -49,7 +49,7 @@ void setup()
 
     al_register_event_source(event_queue, al_get_display_event_source(display));
     al_register_event_source(event_queue, al_get_timer_event_source(fps_timer));
-	al_register_event_source(event_queue, al_get_keyboard_event_source());
+    al_register_event_source(event_queue, al_get_keyboard_event_source());
     
 }
 
@@ -57,7 +57,7 @@ void cleanup()
 {
     al_destroy_timer(fps_timer);
     al_destroy_display(display);
-	al_uninstall_keyboard();
+    al_uninstall_keyboard();
     al_destroy_event_queue(event_queue);
 }
 
