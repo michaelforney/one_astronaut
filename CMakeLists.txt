@@ -8,6 +8,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
     "${CMAKE_SOURCE_DIR}/cmake/")
 
 find_package(Allegro REQUIRED)
+find_package(Chipmunk REQUIRED)
 
 include_directories(${ALLEGRO_INCLUDE_DIRS})
 
@@ -21,5 +22,6 @@ add_executable(one_astronaut
 
 target_link_libraries(one_astronaut
     ${ALLEGRO_LIBRARIES}
+    ${CHIPMUNK_LIBRARIES}
 )
 
