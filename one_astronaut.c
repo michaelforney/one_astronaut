@@ -19,7 +19,6 @@
 
 #include "one_astronaut.h"
 #include "events.h"
-#include "player.h"
 
 ALLEGRO_DISPLAY * display;
 ALLEGRO_TIMER * fps_timer;
