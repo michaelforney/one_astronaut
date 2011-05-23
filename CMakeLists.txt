@@ -18,6 +18,7 @@ add_executable(one_astronaut
     events.c
     update.c
     draw.c
+    player.c
 )
 
 target_link_libraries(one_astronaut

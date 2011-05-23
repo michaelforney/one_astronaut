@@ -19,6 +19,7 @@
 
 #include "one_astronaut.h"
 #include "events.h"
+#include "player.h"
 
 ALLEGRO_DISPLAY * display;
 ALLEGRO_TIMER * fps_timer;
@@ -53,6 +54,7 @@ void setup()
     space.gravity = gravity;
 
     setup_events();
+    setup_player();
 
     al_register_event_source(event_queue, al_get_timer_event_source(fps_timer));
     al_register_event_source(event_queue, al_get_keyboard_event_source());

@@ -20,6 +20,12 @@
 #ifndef ONE_ASTRONAUT_UPDATE_H
 #define ONE_ASTRONAUT_UPDATE_H
 
+enum collision_type
+{
+    GROUND,
+    PLAYER
+};
+
 /**
  * Update the game objects (position, state, etc) for the next frame.
  */

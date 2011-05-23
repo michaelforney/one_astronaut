@@ -18,9 +18,11 @@
  */
 
 #include "events.h"
+
 #include "one_astronaut.h"
 #include "update.h"
 #include "draw.h"
+#include "player.h"
 
 ALLEGRO_EVENT_QUEUE * event_queue;
 
@@ -43,16 +45,15 @@ static void handle_key_down(ALLEGRO_EVENT * event)
 {
     switch (event->keyboard.keycode)
     {
-        case ALLEGRO_KEY_A:
-            keys.a = true; break;
-        case ALLEGRO_KEY_D:
-            keys.d = true; break;
-        case ALLEGRO_KEY_S:
-            keys.s = true; break;
-        case ALLEGRO_KEY_W:
-            keys.w = true; break;
+        case ALLEGRO_KEY_LEFT:
+            player_begin_move_left();
+            break;
+        case ALLEGRO_KEY_RIGHT:
+            player_begin_move_right();
+            break;
         case ALLEGRO_KEY_SPACE:
-            keys.space = true; break;
+            player_jump();
+            break;
     }
 }
 
@@ -60,16 +61,12 @@ static void handle_key_up(ALLEGRO_EVENT * event)
 {
     switch (event->keyboard.keycode)
     {
-        case ALLEGRO_KEY_A:
-            keys.a = false; break;
-        case ALLEGRO_KEY_D:
-            keys.d = false; break;
-        case ALLEGRO_KEY_S:
-            keys.s = false; break;
-        case ALLEGRO_KEY_W:
-            keys.w = false; break;
-        case ALLEGRO_KEY_SPACE:
-            keys.space = false; break;
+        case ALLEGRO_KEY_LEFT:
+            player_end_move_left();
+            break;
+        case ALLEGRO_KEY_RIGHT:
+            player_end_move_right();
+            break;
     }
 }
 

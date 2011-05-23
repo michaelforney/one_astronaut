@@ -23,6 +23,7 @@
 
 #include "draw.h"
 #include "one_astronaut.h"
+#include "player.h"
 
 static void draw_fps()
 {
@@ -39,9 +40,17 @@ static void draw_background()
     al_clear_to_color(al_map_rgb(0, 0, 0));
 }
 
+static void draw_player()
+{
+    al_draw_bitmap(player.sprite,
+        player.body->p.x - al_get_bitmap_width(player.sprite) / 2,
+        player.body->p.y - al_get_bitmap_height(player.sprite) / 2, 0);
+}
+
 void draw()
 {
     draw_background();
+    draw_player();
     draw_fps();
 
     al_flip_display();
