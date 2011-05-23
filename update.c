@@ -22,17 +22,22 @@
 
 #include <allegro5/allegro.h>
 
+static double delta_time = 0.0;
+
 static void update_fps()
 {
     static double time = 0.0;
     double new_time = al_get_time();
-    fps = 1.0 / (new_time - time);
+    delta_time = new_time - time;
+    fps = 1.0 / delta_time;
     time = new_time;
 }
 
 void update()
 {
     update_fps();
+
+    cpSpaceStep(&space, delta_time);
 }
 
 // vim: fdm=syntax fo=croql et sw=4 sts=4 ts=8
