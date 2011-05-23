@@ -23,11 +23,14 @@
 ALLEGRO_DISPLAY * display;
 ALLEGRO_TIMER * fps_timer;
 ALLEGRO_FONT * main_font;
+cpSpace space;
 bool running = true;
 double fps = 0.0;
 KEYS keys = {false, false, false, false, false};
 
-static int target_fps = 60;
+/* Static Constants */
+static const int target_fps = 60;
+static const cpVect gravity = { 0, 800 };
 
 void setup()
 {
@@ -40,10 +43,14 @@ void setup()
     al_init_ttf_addon();
     al_install_keyboard();
 
-    main_font = al_load_font("data/fonts/TerminusBold-4.34.ttf", 24, 0);
+    cpInitChipmunk();
 
+    main_font = al_load_font("data/fonts/TerminusBold-4.34.ttf", 24, 0);
     display = al_create_display(800, 600);
     fps_timer = al_create_timer(ALLEGRO_BPS_TO_SECS(target_fps));
+
+    cpSpaceInit(&space);
+    space.gravity = gravity;
 
     setup_events();
 
