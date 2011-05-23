@@ -10,7 +10,10 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
 find_package(Allegro REQUIRED)
 find_package(Chipmunk REQUIRED)
 
-include_directories(${ALLEGRO_INCLUDE_DIRS})
+include_directories(
+    ${ALLEGRO_INCLUDE_DIRS}
+    ${CHIPMUNK_INCLUDE_DIRS}
+)
 
 add_executable(one_astronaut
     main.c
