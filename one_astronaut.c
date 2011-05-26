@@ -31,6 +31,8 @@ KEYS keys = {false, false, false, false, false};
 
 /* Static Constants */
 static const int target_fps = 60;
+static const int display_width = 800;
+static const int display_height = 600;
 static const cpVect gravity = { 0, 800 };
 
 void setup()
@@ -47,7 +49,7 @@ void setup()
     cpInitChipmunk();
 
     main_font = al_load_font("data/fonts/TerminusBold-4.34.ttf", 24, 0);
-    display = al_create_display(800, 600);
+    display = al_create_display(display_width, display_height);
     fps_timer = al_create_timer(ALLEGRO_BPS_TO_SECS(target_fps));
 
     cpSpaceInit(&space);
