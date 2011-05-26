@@ -18,8 +18,14 @@
  */
 
 #include "one_astronaut.h"
+
+#include <allegro5/allegro_image.h>
+#include <allegro5/allegro_ttf.h>
+#include <allegro5/allegro_primitives.h>
+
 #include "events.h"
 #include "player.h"
+#include "update.h"
 
 ALLEGRO_DISPLAY * display;
 ALLEGRO_TIMER * fps_timer;
@@ -36,6 +42,8 @@ static const cpVect gravity = { 0, 800 };
 
 void setup()
 {
+    cpShape * ground, * wall;
+
     al_set_app_name("one_astronaut");
     al_set_org_name("one_astronaut");
 
@@ -43,6 +51,7 @@ void setup()
     al_init_font_addon();
     al_init_image_addon();
     al_init_ttf_addon();
+    al_init_primitives_addon();
     al_install_keyboard();
 
     cpInitChipmunk();
@@ -53,6 +62,27 @@ void setup()
 
     cpSpaceInit(&space);
     space.gravity = gravity;
+
+    /* Ground */
+    ground = cpSegmentShapeNew(&space.staticBody, cpv(0, 580), cpv(800, 580), 0);
+    ground->collision_type = GROUND;
+    cpSpaceAddShape(&space, ground);
+    ground = cpSegmentShapeNew(&space.staticBody, cpv(0, 520), cpv(200, 520), 0);
+    ground->collision_type = GROUND;
+    cpSpaceAddShape(&space, ground);
+
+    /* Slope */
+    ground = cpSegmentShapeNew(&space.staticBody, cpv(500, 580), cpv(650, 560), 0);
+    ground->collision_type = GROUND;
+    cpSpaceAddShape(&space, ground);
+    ground = cpSegmentShapeNew(&space.staticBody, cpv(650, 560), cpv(800, 580), 0);
+    ground->collision_type = GROUND;
+    cpSpaceAddShape(&space, ground);
+
+    /* Wall */
+    wall = cpSegmentShapeNew(&space.staticBody, cpv(200, 580), cpv(200, 520), 0);
+    wall->collision_type = WALL;
+    cpSpaceAddShape(&space, wall);
 
     setup_events();
     setup_player();

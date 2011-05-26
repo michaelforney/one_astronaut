@@ -23,6 +23,7 @@
 enum collision_type
 {
     GROUND,
+    WALL,
     PLAYER
 };
 

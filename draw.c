@@ -20,6 +20,7 @@
 #include <stdio.h>
 #include <allegro5/allegro.h>
 #include <allegro5/allegro_font.h>
+#include <allegro5/allegro_primitives.h>
 
 #include "draw.h"
 #include "one_astronaut.h"
@@ -38,6 +39,14 @@ static void draw_fps()
 static void draw_background()
 {
     al_clear_to_color(al_map_rgb(0, 0, 0));
+
+    /* Ground */
+    al_draw_filled_rectangle(0, 600, 800, 580, al_map_rgb(255, 255, 255));
+    al_draw_filled_rectangle(0, 580, 200, 520, al_map_rgb(255, 255, 255));
+
+    /* Slope */
+    al_draw_filled_triangle(500, 580, 650, 560, 650, 580, al_map_rgb(255, 255, 255));
+    al_draw_filled_triangle(650, 580, 650, 560, 800, 580, al_map_rgb(255, 255, 255));
 }
 
 static void draw_player()

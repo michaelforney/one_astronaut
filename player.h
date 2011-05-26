@@ -29,7 +29,13 @@ struct player
     cpBody * body;
     cpShape * shape;
 
-    bool on_ground;
+    enum {
+        MOVEMENT_STILL,
+        MOVEMENT_RIGHT,
+        MOVEMENT_LEFT
+    } movement;
+
+    cpShape * ground_contact[4];
 };
 
 extern struct player player;

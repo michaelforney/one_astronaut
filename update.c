@@ -18,9 +18,11 @@
  */
 
 #include "update.h"
-#include "one_astronaut.h"
 
 #include <allegro5/allegro.h>
+
+#include "one_astronaut.h"
+#include "player.h"
 
 static double delta_time = 0.0;
 
