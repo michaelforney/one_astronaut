@@ -32,11 +32,6 @@ extern ALLEGRO_FONT * main_font;
 extern cpSpace space;
 extern bool running;
 extern double fps;
-typedef struct {
-    bool a,d,s,w;
-    bool space;
-} KEYS;
-extern KEYS keys;
 
 /**
  * Perform all necessary initialization to run One Astronaut.

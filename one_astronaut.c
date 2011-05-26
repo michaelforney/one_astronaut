@@ -27,7 +27,6 @@ ALLEGRO_FONT * main_font;
 cpSpace space;
 bool running = true;
 double fps = 0.0;
-KEYS keys = {false, false, false, false, false};
 
 /* Static Constants */
 static const int target_fps = 60;
