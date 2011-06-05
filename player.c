@@ -1,6 +1,7 @@
 /* One Astronaut: player.c
  *
  * Copyright (c) 2011 Michael Forney <mforney@mforney.org>
+ *                and Leonard Carrier <leonard@nolongernow.com>
  *
  * This file is a part of One Astronaut.
  *
@@ -28,7 +29,9 @@
 
 static const double player_mass = 5;
 static const double player_speed = 120;
-static const double player_jump_power = 400;
+static const double player_jump_power = 300;
+static double player_jump_counter = 0;
+static const double player_jump_counter_max = 30;
 
 struct player player;
 
@@ -82,13 +85,13 @@ static int player_ground_begin(cpArbiter * arb, cpSpace * space, void * data)
     direction = vector_direction(cpvneg(set.points[0].normal));
 
     if (direction != DOWN)
-        return false;
+        return true;
 
     player.ground_contact[DOWN] = ground_shape;
     player.body->p.y += set.points[0].dist + 0.001;
     player.body->v.y = 0.0;
 
-    return false;
+    return true;
 }
 
 static void player_ground_separate(cpArbiter * arb, cpSpace * space, void * data)
@@ -112,7 +115,7 @@ static int player_wall_begin(cpArbiter * arb, cpSpace * space, void * data)
     direction = vector_direction(cpvneg(set.points[0].normal));
 
     if (direction == UP || direction == DOWN)
-        return false;
+        return true;
 
     for (index = 0; index < set.count; ++index)
     {
@@ -124,7 +127,7 @@ static int player_wall_begin(cpArbiter * arb, cpSpace * space, void * data)
 
     player.ground_contact[direction] = wall_shape;
 
-    return false;
+    return true;
 }
 
 static void player_wall_separate(cpArbiter * arb, cpSpace * space, void * data)
@@ -237,8 +240,24 @@ void player_end_move_left()
 
 void player_jump()
 {
-    if (player.ground_contact[DOWN] && !player.ground_contact[UP])
+    if(player_jump_counter > 0)
+    {
         player.body->v.y = -player_jump_power;
+        player_jump_counter--;
+    }
+}
+
+void player_begin_jump()
+{
+    if(player.ground_contact[DOWN] && !player.ground_contact[UP])
+    {
+        player_jump_counter = player_jump_counter_max;
+    }
+}
+
+void player_end_jump()
+{
+    player_jump_counter = 0;
 }
 
 // vim: fdm=syntax fo=croql et sw=4 sts=4 ts=8

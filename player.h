@@ -1,6 +1,7 @@
 /* One Astronaut: player.h
  *
  * Copyright (c) 2011 Michael Forney <mforney@mforney.org>
+ *                and Leonard Carrier <leonard@nolongernow.com>
  *
  * This file is a part of One Astronaut.
  *
@@ -76,6 +77,15 @@ void player_end_move_left();
  * Cause the player to jump in the air.
  */
 void player_jump();
+/**
+ * Cause the player to begin jumping.
+ */
+void player_begin_jump();
+
+/**
+ * Cause the player to stop jumping.
+ */
+void player_end_jump();
 
 #endif
 

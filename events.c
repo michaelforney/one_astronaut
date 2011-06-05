@@ -1,6 +1,7 @@
 /* One Astronaut: events.c
  *
  * Copyright (c) 2011 Michael Forney <mforney@mforney.org>
+ *                and Leonard Carrier <leonard@nolongernow.com>
  *
  * This file is a part of One Astronaut.
  *
@@ -52,7 +53,7 @@ static void handle_key_down(ALLEGRO_EVENT * event)
             player_begin_move_right();
             break;
         case ALLEGRO_KEY_SPACE:
-            player_jump();
+            player_begin_jump();
             break;
     }
 }
@@ -66,6 +67,9 @@ static void handle_key_up(ALLEGRO_EVENT * event)
             break;
         case ALLEGRO_KEY_RIGHT:
             player_end_move_right();
+            break;
+        case ALLEGRO_KEY_SPACE:
+            player_end_jump();
             break;
     }
 }

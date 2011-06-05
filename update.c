@@ -1,6 +1,7 @@
 /* One Astronaut: update.c
  *
  * Copyright (c) 2011 Michael Forney <mforney@mforney.org>
+ *                and Leonard Carrier <leonard@nolongernow.com>
  *
  * This file is a part of One Astronaut.
  *
@@ -39,7 +40,10 @@ void update()
 {
     update_fps();
 
+    player_jump();
+
     cpSpaceStep(&space, delta_time);
+
 }
 
 // vim: fdm=syntax fo=croql et sw=4 sts=4 ts=8
