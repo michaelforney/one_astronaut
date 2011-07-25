@@ -148,9 +148,9 @@ static void player_velocity(cpBody * body, cpVect gravity, cpFloat damping, cpFl
 {
     /* Ignore gravity if player is contacting the ground. */
     if (player.ground_contact[DOWN])
-        cpBodyUpdateVelocityDefault(body, cpvzero, damping, dt);
+        cpBodyUpdateVelocity(body, cpvzero, damping, dt);
     else
-        cpBodyUpdateVelocityDefault(body, gravity, damping, dt);
+        cpBodyUpdateVelocity(body, gravity, damping, dt);
 }
 
 static void player_position(cpBody * body, cpFloat dt)

@@ -64,23 +64,23 @@ void setup()
     space.gravity = gravity;
 
     /* Ground */
-    ground = cpSegmentShapeNew(&space.staticBody, cpv(0, 580), cpv(800, 580), 0);
+    ground = cpSegmentShapeNew(space.staticBody, cpv(0, 580), cpv(800, 580), 0);
     ground->collision_type = GROUND;
     cpSpaceAddShape(&space, ground);
-    ground = cpSegmentShapeNew(&space.staticBody, cpv(0, 520), cpv(200, 520), 0);
+    ground = cpSegmentShapeNew(space.staticBody, cpv(0, 520), cpv(200, 520), 0);
     ground->collision_type = GROUND;
     cpSpaceAddShape(&space, ground);
 
     /* Slope */
-    ground = cpSegmentShapeNew(&space.staticBody, cpv(500, 580), cpv(650, 560), 0);
+    ground = cpSegmentShapeNew(space.staticBody, cpv(500, 580), cpv(650, 560), 0);
     ground->collision_type = GROUND;
     cpSpaceAddShape(&space, ground);
-    ground = cpSegmentShapeNew(&space.staticBody, cpv(650, 560), cpv(800, 580), 0);
+    ground = cpSegmentShapeNew(space.staticBody, cpv(650, 560), cpv(800, 580), 0);
     ground->collision_type = GROUND;
     cpSpaceAddShape(&space, ground);
 
     /* Wall */
-    wall = cpSegmentShapeNew(&space.staticBody, cpv(200, 580), cpv(200, 520), 0);
+    wall = cpSegmentShapeNew(space.staticBody, cpv(200, 580), cpv(200, 520), 0);
     wall->collision_type = WALL;
     cpSpaceAddShape(&space, wall);
 
