@@ -24,7 +24,8 @@ enum collision_type
 {
     GROUND,
     WALL,
-    PLAYER
+    PLAYER,
+    PLAYER_FEET
 };
 
 /**

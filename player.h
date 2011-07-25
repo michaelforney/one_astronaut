@@ -29,6 +29,7 @@ struct player
     ALLEGRO_BITMAP * sprite;
     cpBody * body;
     cpShape * shape;
+    cpShape * feet_shape;
 
     enum {
         MOVEMENT_STILL,
